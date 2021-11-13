@@ -1,0 +1,16 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.heading-one {
+    font-size: larger;
+}
+
+.start-button {
+    background-color: coral;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
