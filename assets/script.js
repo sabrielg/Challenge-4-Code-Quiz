@@ -6,6 +6,12 @@ var questionHeading = document.querySelector(".question-heading")
 var questionContainer = document.querySelector(".question-container")
 var answerContainer = document.querySelector(".answer-container")
 var timerEl = document.querySelector(".timer")
+var highscoreDiv = document.getElementById("highscores")
+var list = document.getElementById("list")
+var initials = document.getElementById("initials")
+var saveButton = document.getElementById("save")
+var mainDiv = document.getElementById("main-div")
+var userScore = 0
 
 var questions = [
     {
@@ -48,24 +54,30 @@ function countDown() {
   }
 
 function startQuiz() {
-    countDown()
-    pushButton.setAttribute("class", "hidden")
-    showQuestion()
+    countDown();
+    pushButton.setAttribute("class", "hidden");
+    showQuestion();
 }
 
 
 function showQuestion() {
     answerContainer.innerHTML = ""
+    if (currentIndex == questions.length) {
+    alert("the quiz is finished!"); 
+    mainDiv.classList.add("hidden");
+    highscoreDiv.classList.remove("hidden");
+return }
+    
     var currentQuestion = questions[currentIndex]
-    questionHeading.textContent = currentQuestion.question
+    questionHeading.textContent = currentQuestion.question;
     for (var i = 0; i < currentQuestion.choices.length; i++) {
         var element = currentQuestion.choices[i];
-        var button = document.createElement("button")
+        var button = document.createElement("button");
         button.textContent = element
-        button.setAttribute("value", element)
+        button.setAttribute("value", element);
         button.onclick=checkAnswer
-        answerContainer.appendChild(button)
-        console.log(element)
+        answerContainer.appendChild(button);
+        console.log(element);
     }
 }
 
@@ -73,6 +85,7 @@ function checkAnswer() {
     console.log(this.value)
     if (this.value === questions[currentIndex].answer){
         console.log("this is correct!")
+        userScore ++
     }
     else {
         console.log("this is incorrect")
@@ -84,5 +97,26 @@ function checkAnswer() {
     showQuestion()
 }
 
-// create a timer of 60 seconds that 
 startButton.addEventListener("click", startQuiz);
+
+var highscores = []
+if(localStorage.getItem("high scores")) {
+    highscores = JSON.parse(localStorage.getItem("high scores"))
+    for (let index = 0; index < highscores.length; index++) {
+        var li = document.createElement("li");
+        li.innerText = `${highscores[index].initials}: ${highscores[index].score}`
+        list.appendChild(li)
+    }
+}
+saveButton.addEventListener("click",function (){
+    var object = {
+        "initials": initials.value,
+        "score": userScore
+    }
+    highscores.push(object);
+    localStorage.setItem("high scores", JSON.stringify(highscores));
+    var li = document.createElement("li");
+    li.innerText = `${initials.value}: ${userScore}`
+    list.appendChild(li)
+    initials.value = ""
+}) 
