@@ -1,16 +1,41 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color:#E8998D;
 }
+
+header {
+    padding: 20px 35px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
 
 .heading-one {
     font-size: larger;
 }
 
 .start-button {
-    background-color: coral;
+    background-color: #754043;
     border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.push-button {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .hidden {
     display: none;
+}
+
+.timer {
+    z-index: 9999;  
 }

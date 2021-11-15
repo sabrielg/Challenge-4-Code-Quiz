@@ -1,7 +1,7 @@
 var timeLeft = 60;
 var currentIndex = 0
-var startButton = document.querySelector(".start-button")
-var pushButton = document.querySelector(".push-button")
+var startButton = document.querySelector(".start-button");
+var pushButton = document.querySelector(".push-button");
 var questionHeading = document.querySelector(".question-heading")
 var questionContainer = document.querySelector(".question-container")
 var answerContainer = document.querySelector(".answer-container")
@@ -15,19 +15,29 @@ var userScore = 0
 
 var questions = [
     {
-        question: "question one",
-        choices: ["choice one", "choice two", "choice three"],
-        answer: "choice one"
+        question: "Chickens lay eggs:",
+        choices: ["every day", "weekly", "depends on the time of year"],
+        answer: "depends on the time of year"
     },
     {
-        question: "question two",
-        choices: ["choice two", "choice three"],
-        answer: "choice three"
+        question: "Chickens are omnivores",
+        choices: ["true", "false"],
+        answer: "true"
     },
     {
-        question: "question three",
-        choices: ["choice three", "choice four"],
-        answer: "choice four"
+        question: "Chicken eggs are only brown or white",
+        choices: ["true", "false"],
+        answer: "false"
+    },
+    {
+        question: "Chickens are:",
+        choices: ["friendly", "curious", "silly", "all of the above"],
+        answer: "all of the above"
+    },
+    {
+        question: "Chickens do this when they lay an egg:",
+        choices: ["sing a song", "hide it", "abandon it"],
+        answer: "sing a song"
     }
 ]
 
@@ -62,7 +72,7 @@ function startQuiz() {
 
 function showQuestion() {
     answerContainer.innerHTML = ""
-    if (currentIndex == questions.length) {
+    if (currentIndex === questions.length) {
     alert("the quiz is finished!"); 
     mainDiv.classList.add("hidden");
     highscoreDiv.classList.remove("hidden");
@@ -84,8 +94,8 @@ return }
 function checkAnswer() {
     console.log(this.value)
     if (this.value === questions[currentIndex].answer){
-        console.log("this is correct!")
-        userScore ++
+        console.log("this is correct!");
+        userScore ++;
     }
     else {
         console.log("this is incorrect")
@@ -102,13 +112,13 @@ startButton.addEventListener("click", startQuiz);
 var highscores = []
 if(localStorage.getItem("high scores")) {
     highscores = JSON.parse(localStorage.getItem("high scores"))
-    for (let index = 0; index < highscores.length; index++) {
+    for (let i = 0; i < highscores.length; i++) {
         var li = document.createElement("li");
-        li.innerText = `${highscores[index].initials}: ${highscores[index].score}`
+        li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
         list.appendChild(li)
     }
 }
-saveButton.addEventListener("click",function (){
+saveButton.addEventListener("submit",function (){
     var object = {
         "initials": initials.value,
         "score": userScore
@@ -119,4 +129,4 @@ saveButton.addEventListener("click",function (){
     li.innerText = `${initials.value}: ${userScore}`
     list.appendChild(li)
     initials.value = ""
-}) 
+}); 
