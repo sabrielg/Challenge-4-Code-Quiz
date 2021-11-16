@@ -13,6 +13,7 @@ header {
     top: 0;
 }
 
+
 .timer {
     z-index: 9999;
     align-content: center;
@@ -20,12 +21,19 @@ header {
 
 .heading-one {
     font-size: larger;
+    color: white;
 }
 
 .start-button {
+    outline: none;
+    border: none;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 2.2rem;
+    border-radius: 12px;
+    position: relative;
+    top: -3px;
     background-color: #754043;
-    border-radius: 10px;
-    padding: 10px;
     font-weight: bold;
     color: white;
 }
@@ -46,4 +54,16 @@ header {
     justify-content: center;
 }
 
+.container {
+    display: flex;
+    padding: 0 15%;
+}
 
+.answer-container {
+    text-align: center;
+    justify-content: space-between;
+}
+
+.highscores {
+    text-align: center;
+}

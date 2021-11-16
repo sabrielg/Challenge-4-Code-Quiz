@@ -54,12 +54,17 @@ function countDown() {
         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
-      } else {
-        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-        timerEl.textContent = '';
-        // Use `clearInterval()` to stop the timer
-        clearInterval(timeInterval);
+      } else if (timeLeft < 1) {
+          alert("you've run out of time!")
+          clearInterval(timeInterval);
+          return
       }
+    //   else {
+    //     // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+    //     timerEl.textContent = '';
+    //     // Use `clearInterval()` to stop the timer
+    //     clearInterval(timeInterval);
+    //   }
     }, 1000);
   }
 
@@ -118,7 +123,7 @@ if(localStorage.getItem("high scores")) {
         list.appendChild(li)
     }
 }
-saveButton.addEventListener("submit",function (){
+saveButton.addEventListener("click",function (){
     var object = {
         "initials": initials.value,
         "score": userScore
