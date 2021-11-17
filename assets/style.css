@@ -60,8 +60,14 @@ header {
 }
 
 .answer-container {
+    display: flex;
     text-align: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    font-weight: bold;
 }
 
 .highscores {

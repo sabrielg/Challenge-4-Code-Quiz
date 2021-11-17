@@ -90,6 +90,7 @@ return }
         var button = document.createElement("button");
         button.textContent = element
         button.setAttribute("value", element);
+        button.setAttribute("class", "answer-container")
         button.onclick=checkAnswer
         answerContainer.appendChild(button);
         console.log(element);
