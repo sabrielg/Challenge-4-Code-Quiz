@@ -15,8 +15,8 @@ header {
 
 
 .timer {
+    display: inline;
     z-index: 9999;
-    align-content: center;
 }
 
 .heading-one {
@@ -52,6 +52,7 @@ header {
     display: flex;
     align-content: center;
     justify-content: center;
+    font-size: larger;
 }
 
 .container {
@@ -62,14 +63,18 @@ header {
 .answer-container {
     display: flex;
     text-align: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     border-radius: 10px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     outline: none;
     border: none;
+    font-size: 2.2rem;
+    top: -3px;
     font-weight: bold;
 }
 
 .highscores {
+    display: flex;
+    text-align: center;
     text-align: center;
 }

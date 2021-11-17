@@ -76,9 +76,10 @@ function startQuiz() {
 
 
 function showQuestion() {
-    answerContainer.innerHTML = ""
-    if (currentIndex === questions.length) {
+    answerContainer.innerHTML = "";
+    if (timeLeft === 0 || currentIndex === questions.length) {
     alert("the quiz is finished!"); 
+    clearInterval(timeInterval);
     mainDiv.classList.add("hidden");
     highscoreDiv.classList.remove("hidden");
 return }
@@ -114,6 +115,10 @@ function checkAnswer() {
 }
 
 startButton.addEventListener("click", startQuiz);
+
+// function endQuiz() {
+
+// }
 
 var highscores = []
 if(localStorage.getItem("high scores")) {
