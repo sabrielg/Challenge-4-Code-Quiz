@@ -1,6 +1,7 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color:#FFECCC;
+    background-color:#D1462F;
+    color: white;
 }
 
 header {
@@ -13,6 +14,10 @@ header {
     top: 0;
 }
 
+main {
+    justify-content:center;
+}
+
 
 .timer {
     display: inline;
@@ -21,7 +26,7 @@ header {
 
 .heading-one {
     font-size: larger;
-    color: #DD6031;
+    color: #9ED8DB;
 }
 
 .start-button {
@@ -33,9 +38,9 @@ header {
     border-radius: 12px;
     position: relative;
     top: -3px;
-    background-color: #DD6031;
+    background-color: #9ED8DB;
     font-weight: bold;
-    color: #FFECCC;
+    color: #D1462F;
 }
 
 .push-button {
@@ -71,11 +76,15 @@ header {
     font-size: 2.2rem;
     top: -3px;
     font-weight: bold;
-    color: #DD6031;
+    color: #9ED8DB;
 }
 
 .highscores {
     display: flex;
     text-align: center;
+    text-align: center;
+}
+
+.list {
     text-align: center;
 }

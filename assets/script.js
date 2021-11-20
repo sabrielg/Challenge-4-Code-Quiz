@@ -13,6 +13,7 @@ var saveButton = document.getElementById("save")
 var mainDiv = document.getElementById("main-div")
 var userScore = 0
 var highscores = []
+var timeInterval = null
 
 var questions = [
     {
@@ -43,20 +44,17 @@ var questions = [
 ]
 
 function countDown() {
-    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
-      // As long as the `timeLeft` is greater than 1
       if (timeLeft > 1) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
         timerEl.textContent = timeLeft + ' seconds remaining';
-        // Decrement `timeLeft` by 1
         timeLeft--;
       } else if (timeLeft === 1) {
-        // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
-      } else if (timeLeft < 1) {
+      } else if (timeLeft === 0) {
           alert("you've run out of time!")
+          mainDiv.classList.add('hidden');
+          highscoreDiv.classList.remove("hidden")
           clearInterval(timeInterval);
         //   return
         console.log(timeInterval)
@@ -65,9 +63,7 @@ function countDown() {
           return
       }
       else {
-        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
         timerEl.textContent = '';
-        // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
       }
     }, 1000);
@@ -79,18 +75,17 @@ function startQuiz() {
     showQuestion();
 }
 
-
 function showQuestion() {
     answerContainer.innerHTML = "";
     if (timeLeft === 0 || currentIndex === questions.length) {
     alert("the quiz is finished!"); 
-    endQuiz();
     // call the non existent highscores function (end quiz)
-    // clearInterval(timeInterval);
-    // mainDiv.classList.add("hidden");
-    // highscoreDiv.classList.remove("hidden");
+    clearInterval(timeInterval);
+    mainDiv.classList.add("hidden");
+    highscoreDiv.classList.remove("hidden");
     // move these lines to the function
-// return }
+// return
+    }
     
     var currentQuestion = questions[currentIndex]
     questionHeading.textContent = currentQuestion.question;
@@ -124,33 +119,34 @@ function checkAnswer() {
 
 startButton.addEventListener("click", startQuiz);
 
-function endQuiz() {
-    clearInterval(timeInterval);
-    mainDiv.classList.add("hidden");
-    highscoreDiv.classList.remove("hidden");  
 
-    if(localStorage.getItem("high scores")) {
-        highscores = JSON.parse(localStorage.getItem("high scores"))
-        for (let i = 0; i < highscores.length; i++) {
-            var li = document.createElement("li");
-            li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
-            list.appendChild(li)
-        }
-}
+// function endQuiz() {
+//     clearInterval(timeInterval);
+//     mainDiv.classList.add("hidden");
+//     highscoreDiv.classList.remove("hidden");  
+
+//     if(localStorage.getItem("high scores")) {
+//         highscores = JSON.parse(localStorage.getItem("high scores"))
+//         for (let i = 0; i < highscores.length; i++) {
+//             var li = document.createElement("li");
+//             li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
+//             list.appendChild(li)
+//         }
+// }
 
 
-// var highscores = []
+var highscores = []
 // write the end quiz function with the below if statement 
-// if(localStorage.getItem("high scores")) {
-//     highscores = JSON.parse(localStorage.getItem("high scores"))
-//     for (let i = 0; i < highscores.length; i++) {
-//         var li = document.createElement("li");
-//         li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
-//         list.appendChild(li)
-//     }
-    // items.sort(function (a, b) {
-    //     return a.score - b.value;
-}
+if(localStorage.getItem("high scores")) {
+    highscores = JSON.parse(localStorage.getItem("high scores"))
+    for (let i = 0; i < highscores.length; i++) {
+        var li = document.createElement("li");
+        li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
+        list.appendChild(li)
+    }
+//     items.sort(function (a, b) {
+//         return a.score - b.value;
+// }
 saveButton.addEventListener("click",function (){
     var object = {
         "initials": initials.value,
@@ -162,4 +158,4 @@ saveButton.addEventListener("click",function (){
     li.innerText = `${initials.value}: ${userScore}`
     list.appendChild(li)
     initials.value = ""
-});}
+})};
