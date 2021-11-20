@@ -12,6 +12,7 @@ var initials = document.getElementById("initials")
 var saveButton = document.getElementById("save")
 var mainDiv = document.getElementById("main-div")
 var userScore = 0
+var highscores = []
 
 var questions = [
     {
@@ -57,14 +58,18 @@ function countDown() {
       } else if (timeLeft < 1) {
           alert("you've run out of time!")
           clearInterval(timeInterval);
+        //   return
+        console.log(timeInterval)
+      }
+      else if (currentIndex === questions.length) {
           return
       }
-    //   else {
-    //     // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-    //     timerEl.textContent = '';
-    //     // Use `clearInterval()` to stop the timer
-    //     clearInterval(timeInterval);
-    //   }
+      else {
+        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+        timerEl.textContent = '';
+        // Use `clearInterval()` to stop the timer
+        clearInterval(timeInterval);
+      }
     }, 1000);
   }
 
@@ -79,10 +84,13 @@ function showQuestion() {
     answerContainer.innerHTML = "";
     if (timeLeft === 0 || currentIndex === questions.length) {
     alert("the quiz is finished!"); 
-    clearInterval(timeInterval);
-    mainDiv.classList.add("hidden");
-    highscoreDiv.classList.remove("hidden");
-return }
+    endQuiz();
+    // call the non existent highscores function (end quiz)
+    // clearInterval(timeInterval);
+    // mainDiv.classList.add("hidden");
+    // highscoreDiv.classList.remove("hidden");
+    // move these lines to the function
+// return }
     
     var currentQuestion = questions[currentIndex]
     questionHeading.textContent = currentQuestion.question;
@@ -95,7 +103,7 @@ return }
         button.onclick=checkAnswer
         answerContainer.appendChild(button);
         console.log(element);
-    }
+    };
 }
 
 function checkAnswer() {
@@ -116,18 +124,32 @@ function checkAnswer() {
 
 startButton.addEventListener("click", startQuiz);
 
-// function endQuiz() {
+function endQuiz() {
+    clearInterval(timeInterval);
+    mainDiv.classList.add("hidden");
+    highscoreDiv.classList.remove("hidden");  
 
-// }
+    if(localStorage.getItem("high scores")) {
+        highscores = JSON.parse(localStorage.getItem("high scores"))
+        for (let i = 0; i < highscores.length; i++) {
+            var li = document.createElement("li");
+            li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
+            list.appendChild(li)
+        }
+}
 
-var highscores = []
-if(localStorage.getItem("high scores")) {
-    highscores = JSON.parse(localStorage.getItem("high scores"))
-    for (let i = 0; i < highscores.length; i++) {
-        var li = document.createElement("li");
-        li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
-        list.appendChild(li)
-    }
+
+// var highscores = []
+// write the end quiz function with the below if statement 
+// if(localStorage.getItem("high scores")) {
+//     highscores = JSON.parse(localStorage.getItem("high scores"))
+//     for (let i = 0; i < highscores.length; i++) {
+//         var li = document.createElement("li");
+//         li.innerText = `${highscores[i].initials}: ${highscores[i].score}`
+//         list.appendChild(li)
+//     }
+    // items.sort(function (a, b) {
+    //     return a.score - b.value;
 }
 saveButton.addEventListener("click",function (){
     var object = {
@@ -140,4 +162,4 @@ saveButton.addEventListener("click",function (){
     li.innerText = `${initials.value}: ${userScore}`
     list.appendChild(li)
     initials.value = ""
-}); 
+});}

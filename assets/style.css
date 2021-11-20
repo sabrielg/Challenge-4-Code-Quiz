@@ -1,6 +1,6 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color:#E8998D;
+    background-color:#FFECCC;
 }
 
 header {
@@ -21,7 +21,7 @@ header {
 
 .heading-one {
     font-size: larger;
-    color: white;
+    color: #DD6031;
 }
 
 .start-button {
@@ -33,9 +33,9 @@ header {
     border-radius: 12px;
     position: relative;
     top: -3px;
-    background-color: #754043;
+    background-color: #DD6031;
     font-weight: bold;
-    color: white;
+    color: #FFECCC;
 }
 
 .push-button {
@@ -71,6 +71,7 @@ header {
     font-size: 2.2rem;
     top: -3px;
     font-weight: bold;
+    color: #DD6031;
 }
 
 .highscores {
