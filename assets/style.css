@@ -79,12 +79,10 @@ main {
     color: #9ED8DB;
 }
 
-.highscores {
-    display: flex;
-    text-align: center;
-    text-align: center;
-}
 
-.list {
-    text-align: center;
+#highscores {
+    margin: auto;
+    width: 50%;
+    font-size: 22px;
+    
 }

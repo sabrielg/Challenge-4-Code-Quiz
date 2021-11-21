@@ -13,7 +13,7 @@ var saveButton = document.getElementById("save")
 var mainDiv = document.getElementById("main-div")
 var userScore = 0
 var highscores = []
-var timeInterval = null
+var timeInterval;
 
 var questions = [
     {
@@ -44,7 +44,7 @@ var questions = [
 ]
 
 function countDown() {
-    var timeInterval = setInterval(function () {
+timeInterval = setInterval(function () {
       if (timeLeft > 1) {
         timerEl.textContent = timeLeft + ' seconds remaining';
         timeLeft--;
@@ -52,7 +52,7 @@ function countDown() {
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
       } else if (timeLeft === 0) {
-          alert("you've run out of time!")
+          alert("time's up!")
           mainDiv.classList.add('hidden');
           highscoreDiv.classList.remove("hidden")
           clearInterval(timeInterval);
@@ -79,12 +79,12 @@ function showQuestion() {
     answerContainer.innerHTML = "";
     if (timeLeft === 0 || currentIndex === questions.length) {
     alert("the quiz is finished!"); 
-    // call the non existent highscores function (end quiz)
-    clearInterval(timeInterval);
+    clearInterval(timeInterval)
+//    timeLeft = 0;
     mainDiv.classList.add("hidden");
     highscoreDiv.classList.remove("hidden");
     // move these lines to the function
-// return
+return
     }
     
     var currentQuestion = questions[currentIndex]
@@ -94,7 +94,8 @@ function showQuestion() {
         var button = document.createElement("button");
         button.textContent = element
         button.setAttribute("value", element);
-        button.setAttribute("class", "answer-container")
+        button.classList.add("answer-container")
+        button.classList.add("answer-choice")
         button.onclick=checkAnswer
         answerContainer.appendChild(button);
         console.log(element);
@@ -115,6 +116,7 @@ function checkAnswer() {
     currentIndex++
     // check to see if there are more questions. If not have an end quiz function
     showQuestion()
+
 }
 
 startButton.addEventListener("click", startQuiz);
